@@ -51,8 +51,8 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 			--enable-gstreamer \
 			--enable-freesatepg \
 			--enable-upnp \
-			--enable-radiotext
-
+			--enable-radiotext \
+			--enable-netzkino
 $(DEST):
 	mkdir $@
 
