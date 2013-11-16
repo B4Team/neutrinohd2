@@ -79,7 +79,6 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 			--enable-freesatepg \
 			--enable-upnp \
 			--enable-ci \
-			--enable-standaloneplugins \
 			--enable-gstreamer
 
 $(DEST):
@@ -99,6 +98,14 @@ neutrino-clean:
 neutrino-distclean:
 	-$(MAKE) -C $(N_SRC) distclean
 	rm -f $(N_SRC)/config.status
+
+usb-image: $(BOXTYPE).tar.gz
+
+$(BOXTYPE).tar.gz: neutrino
+	cd $(DEST) && \
+	tar -cf $(BOXTYPE).tar *; \
+	gzip $(BOXTYPE).tar; \
+	mv -f $(BOXTYPE).tar.gz $(PWD)/$@
 
 PHONY = neutrino-checkout
 .PHONY: $(PHONY)
